@@ -5,40 +5,53 @@ import { Link } from "react-router-dom";
 import "./CSS/Title.css";
 
 function Title() {
+  const residences = [
+    {
+      name: "Ontario Hall",
+      image: "./images/Ontario-Hall.png",
+    },
+    {
+      name: "Perth",
+      image: "./images/Perth.png",
+    },
+    {
+      name: "Medsyd",
+      image: "./images/Medsyd.png",
+    },
+    {
+      name: "Essex",
+      image: "./images/Essex.png",
+    },
+    {
+      name: "Saugeen",
+      image: "./images/Saugeen.png",
+    },
+    {
+      name: "London Hall",
+      image: "./images/London-Hall.png",
+    },
+    {
+      name: "Delaware",
+      image: "./images/Delaware.png",
+    },
+  ];
+
   return (
     <>
-      <h1>Residences</h1>
+      <h1 className="title">Residences</h1>
       <Grid container>
-        <Grid item xs={3} className="Grid-item">
-          <Paper elevation={24}>
-            <Link to="/buildinglayout/ontario-hall">Ontario Hall</Link>
-          </Paper>
-        </Grid>
-        <Grid item xs={3} className="Grid-item">
-          <Paper elevation={24}>
-            <Link to="/buildinglayout/perth">Perth</Link>
-          </Paper>
-        </Grid>
-        <Grid item xs={3} className="Grid-item">
-          <Paper elevation={24}>
-            <Link to="/buildinglayout/med-syd">Medsyd</Link>
-          </Paper>
-        </Grid>
-        <Grid item xs={3} className="Grid-item">
-          <Paper elevation={24}>
-            <Link to="/buildinglayout/essex">Essex</Link>
-          </Paper>
-        </Grid>
-        <Grid item xs={3} className="Grid-item">
-          <Paper elevation={24}>
-            <Link to="/buildinglayout/saugeen">Saugeen</Link>
-          </Paper>
-        </Grid>
-        <Grid item xs={3} className="Grid-item">
-          <Paper elevation={24}>
-            <Link to="/buildinglayout/london-hall">London Hall</Link>
-          </Paper>
-        </Grid>
+        {residences.map((building) => (
+          <>
+            <Grid item xs={4} className="Grid-item">
+              <Paper elevation={24}>
+                <img src={building.image} alt={building.name}></img>
+                <Link to={`/buildinglayout/${building.name}`}>
+                  {building.name}
+                </Link>
+              </Paper>
+            </Grid>
+          </>
+        ))}
       </Grid>
     </>
   );
