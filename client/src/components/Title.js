@@ -7,7 +7,7 @@ import "./CSS/Title.css";
 function Title() {
   const residences = [
     {
-      name: "Ontario Hall",
+      name: "Ohall",
       image: "./images/Ontario-Hall.png",
     },
     {
@@ -36,21 +36,8 @@ function Title() {
     },
   ];
 
-  const renderDivs = () => {
-    const floorsPerBuilding = 3;
-
-    const floorList = [];
-
-    for (let i = 0; i < floorsPerBuilding; i++) {
-      floorList.push(<div> HELLLO THIS IS WOKRING</div>);
-    }
-
-    return floorList;
-  };
-
   return (
     <>
-      {renderDivs()}
       <h1 className="title">Residences</h1>
       <Grid container>
         {residences.map((building) => (
