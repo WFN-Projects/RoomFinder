@@ -7,28 +7,27 @@ const database = require('./database')
 
 //Add headers to allow requests from React
 
-app.get('/floorAvail', (req, res) => {
-    const time = req.body.time;
+app.get('/roomAvail', (req, res) => {
+    //const time = req.body.time; //is this necessary?
     const building = req.body.building;
     const floor = req.body.floor;
-    const availRooms = [];
-    database.floorAvail(time, building, floor)
+    database.roomAvail(building, floor)
     .then(response => {
+        console.log(response);
         res.status(200).send(response);
     })
     .catch(error => {
         res.status(500).send(error);
     })
-    //res.send(JSON.stringify(availRooms));
+    //res.send(JSON.stringify(response));
 })
 
 app.post('/updateRoom', (req, res) => {
-    const time = req.body.time;
     const building = req.body.building;
     const floor = req.body.floor;
     const room = req.body.room;
     const status = req.body.status;
-    database.updateRoom(time, building, floor, room, status)
+    database.updateRoom(building, floor, room, status)
     .then(response => {
         res.status(200).send(response);
     })
