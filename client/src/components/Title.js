@@ -1,6 +1,6 @@
 import React from "react";
-import Grid from "@mui/material/Grid";
-import Paper from "@mui/material/Paper";
+import Grid from "@material-ui/core/Grid";
+import Paper from "@material-ui/core/Paper";
 import { Link } from "react-router-dom";
 import "./CSS/Title.css";
 
