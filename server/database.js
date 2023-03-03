@@ -1,24 +1,23 @@
 const client = require("./client")
+const mysql = require('mysql')
 
-/*const floorAvail = (time, building, floor) => {
-  return new Promise(function(resolve, reject) {
-    //const {time, building, floor} = body;
-    client.query("SELECT Availability FROM roomavail WHERE Building_name = " + mysql.escape(building) + " AND Floor_Number = " + mysql.escape(floor)), (error, results) => {
-      if (error) {
-        reject(error);
-      }
-      resolve(results);
-    };
-  })
-}*/
 
 const roomAvail = async (building, floor) => {
-  const response = await client.query("SELECT Availability FROM roomavail WHERE Building_name = " + mysql.escape(building) + " AND Floor_Number = " + mysql.escape(floor));
-  const availRooms = [];
-  for (var i=0; i<response.rows.length; i++) {
-    availRooms.push(response.rows[i].availability);
-  }
-  return availRooms;
+  const response = await client.query("SELECT * FROM roomavail WHERE Building_name = " + mysql.escape(building) + " AND Floor_Number = " + mysql.escape(floor));
+  const rooms = new Map();
+
+  response.rows.forEach(function (row) {
+    if (!rooms.has(row.room_number)) {
+      rooms.set(row.room_number, [row.availability, row.date]);
+    } else {
+      let curr = new Date(row.date);
+      let in_map = new Date(rooms.get(row.room_number)[1])
+      if (curr > in_map) {
+        rooms.set(row.room_number, [row.availability, row.date]);
+      }
+    }
+  })
+  return rooms;
 }
 
 const updateRoom = async (building, floor, room, status) => {
