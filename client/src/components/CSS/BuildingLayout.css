@@ -1,0 +1,117 @@
+/* Group */
+.group {
+    position: absolute;
+    width: 582px;
+    height: 781.57px;
+
+    /*filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));*/
+}
+.background{
+    background: #FCF9FC;
+}
+.building {
+    position: relative;
+    height: 100%;
+  }
+
+  .floor {
+    position: absolute;
+    width: 455.31px;
+    height: 261.78px;
+    left: 141.43px;
+    margin-top: 50px;
+    background: #C7ACFF;
+    bottom: 50px;
+    border-radius: 28px;
+    transform: matrix(0.88, -0.47, 0.88, 0.47, 0, 0);
+    margin-bottom: 100px; /* adjust the value as needed */
+    margin-top: 20px
+    ;
+
+  }
+
+  /* .floor {
+    position: absolute;
+    width: 455.31px;
+    height: 261.78px;
+    left: 141.43px;
+    top: 489.74px;
+    
+    background: #C7ACFF;
+    border-radius: 28px;
+    transform: matrix(0.88, -0.47, 0.88, 0.47, 0, 0);
+  } */
+
+
+/* 
+  .floor {
+    
+    position: absolute;
+    width: 424.81px;
+    height: 232.99px;
+    background: #C7ACFF;
+    border-radius: 28px;
+    transform: matrix(0.88, -0.47, 0.88, 0.47, 0, 0);
+  } */
+/* .floor {
+    box-sizing: border-box;
+    position: relative;
+    width: 455.31px;
+    height: 261.78px;
+    left: 141.43px;
+    top: 489.74px;
+
+    background: #A483EC;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    transform: matrix(0.95, -0.31, 0.3, 0.95, 0, 0);
+} */
+
+.Second-floor {
+    position: absolute;
+    width: 424.81px;
+    height: 232.99px;
+
+    background: #B18CFF;
+    border-radius: 28px;
+    transform: matrix(0.88, -0.47, 0.88, 0.47, 0, 0);
+}
+
+.Third-floor {
+    position: absolute;
+    width: 424.81px;
+    height: 232.99px;
+
+    background: #A07EE7;
+    border-radius: 28px;
+    transform: matrix(0.88, -0.47, 0.88, 0.47, 0, 0);
+}
+
+.Fourth-floor {
+    position: absolute;
+    width: 424.81px;
+    height: 232.99px;
+
+    background: #8C6CD0;
+    border-radius: 28px;
+    transform: matrix(0.88, -0.47, 0.88, 0.47, 0, 0);
+}
+
+.Fifth-floor {
+    position: absolute;
+    width: 424.81px;
+    height: 232.99px;
+
+    background: #8266BF;
+    border-radius: 28px;
+    transform: matrix(0.88, -0.47, 0.88, 0.47, 0, 0);
+}
+
+.Bottom-floor {
+    position: absolute;
+    width: 424.81px;
+    height: 232.99px;
+
+    background: #6E55A4;
+    border-radius: 28px;
+    transform: matrix(0.88, -0.47, 0.88, 0.47, 0, 0);
+}
