@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 
 function BuildingLayout({ building }) {
   const { name } = useParams();
+  const formattedName = name.replace('_', ' ');
   const floorList = [];
 
   const numberOfFloors = {
@@ -29,7 +30,10 @@ function BuildingLayout({ building }) {
   const colourArray = ['#C7ACFF','#B18CFF','#A07EE7','#8C6CD0','#8266BF', '#6E55A4',
   '#5C4793','#4A3782', '#3B2D6E', '#2C235A','#1E1846','#110E32','#02061D'];
 
+  
 return (
+  <div>
+  <h1 className="building-Name">{formattedName}</h1>
   <ul className="building" style={{ listStyle: "none"}}>
     {floorList.map((floor, i) => (
       <li key={i}>
@@ -43,6 +47,7 @@ return (
       </li>
     ))}
   </ul>
+  </div>
 );
 
 }
