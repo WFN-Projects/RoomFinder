@@ -1,11 +1,11 @@
-/* Group */
+/* Group
 .group {
     position: absolute;
     width: 582px;
     height: 781.57px;
 
     /*filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));*/
-}
+/* } */ 
 
 .building-Name {
   position: absolute;
@@ -24,14 +24,18 @@ text-align: center;
 color: #000000;
 
 }
-.background{
-    background: #FCF9FC;
+
+.background-Col{
+    /* A gradient at the center of its container,
+   starting light purple, changing to blue, and finishing green */
+  background: radial-gradient(#C7ACFF, #5d34b6) !important;
 }
+
 .building {
   margin-top: 100px;
-    position: relative;
-    height: 100%;
-  }
+  position: relative;
+  height: 100%;
+}
 
 .floor {
     position: absolute;
@@ -84,7 +88,7 @@ color: #000000;
     transform: matrix(0.95, -0.31, 0.3, 0.95, 0, 0);
 } */
 
-.Second-floor {
+/* .Second-floor {
     position: absolute;
     width: 424.81px;
     height: 232.99px;
@@ -132,4 +136,4 @@ color: #000000;
     background: #6E55A4;
     border-radius: 28px;
     transform: matrix(0.88, -0.47, 0.88, 0.47, 0, 0);
-}
+} */

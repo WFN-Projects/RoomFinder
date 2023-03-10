@@ -30,23 +30,26 @@ function BuildingLayout({ building }) {
   const colourArray = ['#C7ACFF','#B18CFF','#A07EE7','#8C6CD0','#8266BF', '#6E55A4',
   '#5C4793','#4A3782', '#3B2D6E', '#2C235A','#1E1846','#110E32','#02061D'];
 
+
   
 return (
-  <div>
-  <h1 className="building-Name">{formattedName}</h1>
-  <ul className="building" style={{ listStyle: "none"}}>
-    {floorList.map((floor, i) => (
-      <li key={i}>
-        <div
-          className="floor"
-          style={{
-            top: `${i * 20}px`,
-            background: `linear-gradient(to bottom, ${colourArray[i % colourArray.length]}, #FFFFFF)`,
-          }}
-        ></div>
-      </li>
-    ))}
-  </ul>
+  <div className="background-Col"> 
+    <div>
+      <h1 className="building-Name">{formattedName}</h1>
+      <ul className="building" style={{ listStyle: "none"}}>
+        {floorList.map((floor, i) => (
+          <li key={i}>
+            <div
+              className="floor"
+              style={{
+                top: `${i * 20}px`,
+                background: `linear-gradient(to bottom, ${colourArray[i % colourArray.length]}, #FFFFFF)`,
+              }}
+            ></div>
+          </li>
+        ))}
+      </ul>
+    </div>
   </div>
 );
 
