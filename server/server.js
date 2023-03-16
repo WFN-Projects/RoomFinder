@@ -44,6 +44,20 @@ app.post("/updateRoom", (req, res) => {
     });
 });
 
+app.get("/occupancyProbability", (req, res) => {
+  const room = req.body.room;
+  console.log(room);
+  database
+    .occupancyProbability(room)
+    .then((response) => {
+      const obj = Object.fromEntries(response);
+      res.status(200).send(JSON.stringify(obj));
+    })
+    .catch((error) => {
+      res.status(500).send(error);
+    });
+});
+
 app.listen(port, () => {
   console.log(`App running on port ${port}.`);
 });
