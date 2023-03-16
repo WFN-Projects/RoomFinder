@@ -49,26 +49,28 @@ function BuildingLayout({ building }) {
         <h1 className="building-Name">{formattedName}</h1>
         <ul className="building" style={{ listStyle: "none" }}>
           {floorList.map((floor, i) => (
-            <li key={i} style={{ marginBottom: "100px" }}>
-              <div
-                style={{
-                  top: `${i * 80}px`,
-                  background: `linear-gradient(to bottom, ${
-                    colourArray[i % colourArray.length]
-                  }, #FFFFFF)`,
-                  position: "absolute",
-                  width: 455.31,
-                  height: 261.78,
-                  left: 141.43,
-                  marginTop: 50,
-                  backgroundColor: "#c7acff",
-                  bottom: 50,
-                  borderRadius: 28,
-                  transform: "matrix(0.88, -0.47, 0.88, 0.47, 0, 0)",
-                  marginBottom: 100 /* adjust the value as needed */,
-                }}
-              ></div>
-            </li>
+            <button>
+              <li key={i} style={{ marginBottom: "100px" }}>
+                <div
+                  style={{
+                    top: `${i * 80}px`,
+                    background: `linear-gradient(to bottom, ${
+                      colourArray[i % colourArray.length]
+                    }, #FFFFFF)`,
+                    position: "absolute",
+                    width: 455.31,
+                    height: 261.78,
+                    left: 141.43,
+                    marginTop: 50,
+                    backgroundColor: "#c7acff",
+                    bottom: 50,
+                    borderRadius: 28,
+                    transform: "matrix(0.88, -0.47, 0.88, 0.47, 0, 0)",
+                    marginBottom: 100 /* adjust the value as needed */,
+                  }}
+                ></div>
+              </li>
+            </button>
           ))}
         </ul>
       </div>
