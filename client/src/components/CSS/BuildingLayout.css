@@ -5,30 +5,29 @@
     height: 781.57px;
 
     /*filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));*/
-/* } */ 
+/* } */
 
 .building-Name {
   position: absolute;
-width: 995px;
-height: 105px;
-left: 593px;
-top: 124px;
+  width: 995px;
+  height: 105px;
+  left: 593px;
+  top: 124px;
 
-font-family: 'Inter', sans-serif;
-font-style: normal;
-font-weight: 700;
-font-size: 80px;
-line-height: 97px;
-text-align: center;
+  font-family: "Inter", sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 80px;
+  line-height: 97px;
+  text-align: center;
 
-color: #000000;
-
+  color: #000000;
 }
 
-.background-Col{
-    /* A gradient at the center of its container,
+.background-Col {
+  /* A gradient at the center of its container,
    starting light purple, changing to blue, and finishing green */
-  background: radial-gradient(#C7ACFF, #5d34b6) !important;
+  background: radial-gradient(#c7acff, #5d34b6) !important;
 }
 
 .building {
@@ -38,21 +37,20 @@ color: #000000;
 }
 
 .floor {
-    position: absolute;
-    width: 455.31px;
-    height: 261.78px;
-    left: 141.43px;
-    margin-top: 50px;
-    background: #C7ACFF;
-    bottom: 50px;
-    border-radius: 28px;
-    transform: matrix(0.88, -0.47, 0.88, 0.47, 0, 0);
-    margin-bottom: 100px; /* adjust the value as needed */
-    margin-top: 20px
-    ;
+  position: absolute;
+  width: 455.31px;
+  height: 261.78px;
+  left: 141.43px;
+  margin-top: 50px;
+  background: #c7acff;
+  bottom: 50px;
+  border-radius: 28px;
+  transform: matrix(0.88, -0.47, 0.88, 0.47, 0, 0);
+  margin-bottom: 100px; /* adjust the value as needed */
+  /* margin-top: 20px; */
 }
 
-  /* .floor {
+/* .floor {
     position: absolute;
     width: 455.31px;
     height: 261.78px;
@@ -63,7 +61,6 @@ color: #000000;
     border-radius: 28px;
     transform: matrix(0.88, -0.47, 0.88, 0.47, 0, 0);
   } */
-
 
 /* 
   .floor {
