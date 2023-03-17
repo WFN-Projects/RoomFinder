@@ -1,7 +1,7 @@
 import React from "react";
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
-import { Link } from "react-router-dom";
+import Building from './Building';
 import "./CSS/Title.css";
 
 function Title() {
@@ -34,20 +34,25 @@ function Title() {
       name: "Delaware",
       image: "./images/Delaware.png",
     },
+    {
+      name: "Delaware",
+      image: "./images/Delaware.png",
+    },
+    {
+      name: "Delaware",
+      image: "./images/Delaware.png",
+    },
   ];
 
   return (
     <>
       <h1 className="title">Residences</h1>
-      <Grid container>
-        {residences.map((building, i) => (
+      <Grid container  spacing={10}>
+        {residences.map((building) => (
           <>
-            <Grid key={i} item xs={4} className="Grid-item">
-              <Paper elevation={24}>
-                <img src={building.image} alt={building.name}></img>
-                <Link to={`/buildinglayout/${building.name}`}>
-                  {building.name}
-                </Link>
+            <Grid item xs={4} className="Grid-item">
+              <Paper elevation={2}>
+                <Building curr_building={building}></Building>
               </Paper>
             </Grid>
           </>
