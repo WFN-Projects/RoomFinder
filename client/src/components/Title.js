@@ -7,7 +7,7 @@ import "./CSS/Title.css";
 function Title() {
   const residences = [
     {
-      name: "Ontario Hall",
+      name: "Ontario_Hall",
       image: "./images/Ontario-Hall.png",
     },
     {
@@ -27,7 +27,7 @@ function Title() {
       image: "./images/Saugeen.png",
     },
     {
-      name: "London Hall",
+      name: "London_Hall",
       image: "./images/London-Hall.png",
     },
     {
