@@ -1,80 +1,61 @@
 import React, { useState } from "react";
 import "./CSS/BuildingLayout.css";
 import { useParams } from "react-router-dom";
+import FloorTile from "./FloorTile";
+import Floor_Layout from "./Floor_Layout";
 
 function BuildingLayout({ building }) {
   const { name } = useParams();
-  const formattedName = name.replace("_", " ");
-  const floorList = [];
 
+  const formattedName = name.replace("_", " ");
   const numberOfFloors = {
-    Ontario_Hall: 6,
-    Perth: 6,
-    Delaware: 5,
-    Medsyd: 3,
-    Essex: 5,
-    Saugeen: 13,
-    Alumni: 10,
-    Elgin: 5,
-    Lambton: 8,
-    London_Hall: 6,
+    Ontario_Hall: [
+      "1e",
+      "2e",
+      "3e",
+      "4e",
+      "5e",
+      "6e",
+      "1w",
+      "2w",
+      "3w",
+      "4w",
+      "5w",
+      "6w",
+    ],
+    Perth: [1, 2, 3, 4, 5, 6],
+    Delaware: [1, 2, 3],
+    Medsyd: [1, 2, 3],
+    Essex: [1, 2, 3, 4, 5],
+    Saugeen: [1, 2, 3, 4, 5, 6, 7],
+    Alumni: [1, 2, 3, 4, 5, 6, 7],
+    Elgin: [1, 2, 3, 4, 5, 6, 7],
+    Lambton: [1, 2, 3, 4, 5, 6, 7],
+    London_Hall: [1, 2, 3, 4, 5, 6, 7],
   };
 
-  // let marginTop = 0;
-  const floorsPerBuilding = numberOfFloors[name];
-
-  for (let i = 0; i < floorsPerBuilding; i++) {
-    floorList.push(".");
-  }
-
-  const colourArray = [
-    "#C7ACFF",
-    "#B18CFF",
-    "#A07EE7",
-    "#8C6CD0",
-    "#8266BF",
-    "#6E55A4",
-    "#5C4793",
-    "#4A3782",
-    "#3B2D6E",
-    "#2C235A",
-    "#1E1846",
-    "#110E32",
-    "#02061D",
-  ];
+  const floorList = numberOfFloors[name];
 
   return (
-    <div className="background-Col">
-      <div>
-        <h1 className="building-Name">{formattedName}</h1>
-        <ul className="building" style={{ listStyle: "none" }}>
-          {floorList.map((floor, i) => (
-            <button>
-              <li key={i} style={{ marginBottom: "100px" }}>
-                <div
-                  style={{
-                    top: `${i * 80}px`,
-                    background: `linear-gradient(to bottom, ${
-                      colourArray[i % colourArray.length]
-                    }, #FFFFFF)`,
-                    position: "absolute",
-                    width: 455.31,
-                    height: 261.78,
-                    left: 141.43,
-                    marginTop: 50,
-                    backgroundColor: "#c7acff",
-                    bottom: 50,
-                    borderRadius: 28,
-                    transform: "matrix(0.88, -0.47, 0.88, 0.47, 0, 0)",
-                    marginBottom: 100 /* adjust the value as needed */,
-                  }}
-                ></div>
-              </li>
-            </button>
-          ))}
-        </ul>
+    <>
+      <div className="background-Col">
+        <div>
+          <h1 className="building-Name">{formattedName}</h1>
+          <ul className="building" style={{ listStyle: "none" }}>
+            {floorList?.map((floor, i) => (
+              <>
+                <FloorTile
+                  key={floor}
+                  index={i}
+                  buildingName={name}
+                  floor={floor}
+                ></FloorTile>
+              </>
+            ))}
+          </ul>
+        </div>
       </div>
-    </div>
+    </>
   );
 }
 

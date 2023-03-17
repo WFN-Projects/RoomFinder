@@ -40,9 +40,9 @@ function Title() {
     <>
       <h1 className="title">Residences</h1>
       <Grid container>
-        {residences.map((building) => (
+        {residences.map((building, i) => (
           <>
-            <Grid item xs={4} className="Grid-item">
+            <Grid key={i} item xs={4} className="Grid-item">
               <Paper elevation={24}>
                 <img src={building.image} alt={building.name}></img>
                 <Link to={`/buildinglayout/${building.name}`}>
