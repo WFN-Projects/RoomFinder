@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import Floor_Layout from "./Floor_Layout";
 import "./CSS/BuildingLayout.css";
-import Box from "@mui/material/Box";
+import Box from "@material-ui/core/Box";
 // import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
-import Modal from "@mui/material/Modal";
+import Typography from "@material-ui/core/Typography";
+import Modal from "@material-ui/core/Modal";
 
 const style = {
   position: "absolute",

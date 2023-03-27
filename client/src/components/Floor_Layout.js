@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { DataGrid } from "@mui/x-data-grid";
-import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
+import { DataGrid } from "@mui/data-grid";
+// import DataGrid from "@material-ui/core/grid";
+import Box from "@material-ui/core/Box";
+import Button from "@material-ui/core/Button";
+import BarChart from "./BarChart";
 
 const Floor_Layout = ({ buildingName, floor }) => {
   const [rooms, setRooms] = useState({});
@@ -20,7 +22,6 @@ const Floor_Layout = ({ buildingName, floor }) => {
         const jsonData = await response.json();
         console.log(jsonData);
         setRooms(jsonData);
-        // console.log(rooms);
       } else {
         console.log(`Server returned status code ${response.status}`);
       }
@@ -37,15 +38,9 @@ const Floor_Layout = ({ buildingName, floor }) => {
     {
       feild: "viewProbability",
       headerName: "View Probability",
-      editable: true,
       flex: 1,
       renderCell: (params) => (
-        <Button
-          variant="contained"
-          color="primary"
-          // width="50000px"
-          onClick={() => {}}
-        >
+        <Button variant="contained" color="primary" onClick={() => {}}>
           View Probability
         </Button>
       ),
@@ -54,14 +49,12 @@ const Floor_Layout = ({ buildingName, floor }) => {
       field: "roomNumber",
       headerName: "Room Number",
       width: 150,
-      editable: true,
       flex: 1,
     },
     {
       field: "availability",
       headerName: "Availability",
       width: 150,
-      editable: true,
       flex: 1,
     },
   ];

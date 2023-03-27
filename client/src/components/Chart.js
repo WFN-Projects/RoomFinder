@@ -1,5 +1,4 @@
-import React, { useRef, useEffect } from "react";
-import Chart from "chart.js/auto";
+import React, { useRef, useEffect, useState } from "react";
 import { hourProbability } from "../server/database.js";
 
 const Chart = ({ roomNumber }) => {
@@ -18,7 +17,7 @@ const Chart = ({ roomNumber }) => {
       );
       if (response.ok) {
         const jsonData = await response.json();
-        SVGFEDisplacementMapElement(jsonData);
+        console.log(jsonData);
       } else {
         console.log(`Server returned status code ${response.status}`);
       }
