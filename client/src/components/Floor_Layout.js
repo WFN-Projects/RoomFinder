@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { DataGrid } from "@mui/data-grid";
+import { DataGrid } from "@mui/x-data-grid";
 // import DataGrid from "@material-ui/core/grid";
 import Box from "@material-ui/core/Box";
 import Button from "@material-ui/core/Button";
