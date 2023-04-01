@@ -1,13 +1,13 @@
 import React from "react";
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
-import { Link } from "react-router-dom";
+import Building from './Building';
 import "./CSS/Title.css";
 
 function Title() {
   const residences = [
     {
-      name: "Ontario Hall",
+      name: "Ontario_Hall",
       image: "./images/Ontario-Hall.png",
     },
     {
@@ -27,8 +27,16 @@ function Title() {
       image: "./images/Saugeen.png",
     },
     {
-      name: "London Hall",
+      name: "London_Hall",
       image: "./images/London-Hall.png",
+    },
+    {
+      name: "Delaware",
+      image: "./images/Delaware.png",
+    },
+    {
+      name: "Delaware",
+      image: "./images/Delaware.png",
     },
     {
       name: "Delaware",
@@ -39,15 +47,12 @@ function Title() {
   return (
     <>
       <h1 className="title">Residences</h1>
-      <Grid container>
+      <Grid container  spacing={10}>
         {residences.map((building) => (
           <>
             <Grid item xs={4} className="Grid-item">
-              <Paper elevation={24}>
-                <img src={building.image} alt={building.name}></img>
-                <Link to={`/buildinglayout/${building.name}`}>
-                  {building.name}
-                </Link>
+              <Paper elevation={2}>
+                <Building curr_building={building}></Building>
               </Paper>
             </Grid>
           </>

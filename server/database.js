@@ -46,42 +46,49 @@ const occupancyProbability = async (room) => {
   );
 
   const hourlyProbability = new Map();
-  hourlyProbability.set("0", 0);
-  var fromDate = new Date();
+  hourlyProbability.set(0, 0);
+  for (let i = 1; i < 24; i++) {
+    hourlyProbability.set(i, 0);
+  }
+  let fromDate = new Date();
   fromDate.setDate(fromDate.getDate() - 14);
 
-  var matrix = [];
+  let matrix = [];
   for (let i = 0; i < 14; i++) {
-    var hoursArray = []; //create an array per hour
+    let hoursArray = []; //create an array per hour
     for (let j = 0; j < 24; j++) {
       hoursArray[j] = 0;
     }
     matrix[i] = hoursArray;
   }
 
-  //var today = new Date();
-  var fromHour = fromDate.getHours();
+  //let today = new Date();
+  let fromHour = fromDate.getHours();
 
-  response.rows.forEach(function (row) {
-    var date = new Date(row.date);
-
-    var hour = date.getHours();
+  console.log(response.rows);
+  response.rows.forEach((row) => {
+    const date = new Date(row.date);
+    console.log("Checking if reached here");
+    let hour = date.getHours();
 
     //use fromDate as base, matrix[0][0] is the fromDate, fromHour
-    var dayDiff = Math.trunc((date - fromDate) / (24 * 60 * 60 * 1000)); //because interval is 24 x 14 hours, data does not start at 0am all the time
-    var hourDiff = hour - fromHour;
-    if (hourDiff < 0) hourDiff = hourDiff + 24; //mod by 24
+    let dayDiff = Math.trunc((date - fromDate) / (24 * 60 * 60 * 1000)); //because interval is 24 x 14 hours, data does not start at 0am all the time
+    let hourDiff = hour - fromHour;
+    if (hourDiff < 0) {
+      hourDiff = hourDiff + 24; //mod by 24
+    }
 
     if (row.availability == false) {
       matrix[dayDiff][hourDiff] = 1;
     } else {
       // available
       date.setMilliseconds(date.getMilliseconds() - 1); //:00 edge case, ensure that it wont mark the next hour as false when e.g. 6:00
-      var rowIndex = dayDiff;
-      var colIndex = date.getHours() - fromHour;
+      let rowIndex = dayDiff;
+      let colIndex = date.getHours() - fromHour;
 
-      if (colIndex < 0) colIndex = colIndex + 24;
-
+      if (colIndex < 0) {
+        colIndex = colIndex + 24;
+      }
       //loop through matrix backwards to find the previous 1 (occupied)
 
       while (rowIndex >= 0 && matrix[rowIndex][colIndex] == 0) {
@@ -96,16 +103,18 @@ const occupancyProbability = async (room) => {
     }
   });
 
+  console.log("Did we make it here?");
+
   //processing the first row that the cut off is in the middle of being occupied
   if (response.rows[0].availability == true) {
-    var date = new Date(response.rows[0].date);
+    let date = new Date(response.rows[0].date);
     date.setMilliseconds(date.getMilliseconds() - 1);
-    var dayDiff = Math.trunc((date - fromDate) / (24 * 60 * 60 * 1000));
-    var hourDiff = date.getHours() - fromHour;
+    let dayDiff = Math.trunc((date - fromDate) / (24 * 60 * 60 * 1000));
+    let hourDiff = date.getHours() - fromHour;
     if (hourDiff < 0) hourDiff = hourDiff + 24;
 
-    var rowIndex = dayDiff; //current row
-    var colIndex = hourDiff; //current col
+    let rowIndex = dayDiff; //current row
+    let colIndex = hourDiff; //current col
     for (let j = colIndex; j >= 0; j--) {
       matrix[rowIndex][j] = 1;
     }
@@ -119,15 +128,15 @@ const occupancyProbability = async (room) => {
   //processing the last record if availability hasn't been set to true yet
   if (response.rows[response.rows.length - 1].availability == false) {
     //if last entry is false
-    var date = new Date(response.rows[response.rows.length - 1].date);
-    var dayDiff = Math.trunc((date - fromDate) / (24 * 60 * 60 * 1000));
+    let date = new Date(response.rows[response.rows.length - 1].date);
+    let dayDiff = Math.trunc((date - fromDate) / (24 * 60 * 60 * 1000));
 
-    var hourDiff = date.getHours() - fromHour;
+    let hourDiff = date.getHours() - fromHour;
     if (hourDiff < 0) hourDiff = hourDiff + 24;
 
     //everything before is 0... set to 1, until matrix[13][23]
-    var rowIndex = dayDiff; //current row
-    var colIndex = hourDiff; //current col
+    let rowIndex = dayDiff; //current row
+    let colIndex = hourDiff; //current col
 
     for (let j = colIndex; j < 24; j++) {
       matrix[rowIndex][j] = 1;
@@ -141,17 +150,25 @@ const occupancyProbability = async (room) => {
 
   //populate map, 0 is the fromHour
   for (let j = 0; j < 24; j++) {
-    var count = 0;
+    let count = 0;
 
     for (let i = 0; i < 14; i++) {
       count = count + matrix[i][j];
     }
-    console.log("count: ", count, "j: ", j);
+    // console.log("count: ", count, "j: ", j);
     //convert column to real hour, add hourDiff back
-    var hour = j + fromHour;
-    if (hour > 24) hour = hour - 24;
+    let hour = j + fromHour;
+    if (hour >= 24) {
+      hour = hour - 24;
+    }
     hourlyProbability.set(hour, 1 - count / 14);
   }
+
+  console.log(
+    "Do we make it here? what is hourlyProbability: ",
+    hourlyProbability
+  );
+
   return hourlyProbability;
 };
 
