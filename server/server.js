@@ -35,6 +35,7 @@ app.post("/updateRoom", (req, res) => {
   const floor = req.body.floor;
   const room = req.body.room;
   const status = roomAvail;
+  console.log(building, floor, room, status);
   database
     .updateRoom(building, floor, room, status)
     .then((response) => {
