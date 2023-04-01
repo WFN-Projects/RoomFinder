@@ -3,7 +3,7 @@ const app = express();
 app.use(express.json());
 const port = 3001;
 const bodyParser = require("body-parser");
-
+let roomAvail = true;
 const cors = require("cors");
 app.use(cors());
 
@@ -30,10 +30,11 @@ app.get("/roomAvail", (req, res) => {
 });
 
 app.post("/updateRoom", (req, res) => {
+  roomAvail = !roomAvail;
   const building = req.body.building;
   const floor = req.body.floor;
   const room = req.body.room;
-  const status = req.body.status;
+  const status = roomAvail;
   database
     .updateRoom(building, floor, room, status)
     .then((response) => {
