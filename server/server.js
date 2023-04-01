@@ -46,7 +46,6 @@ app.post("/updateRoom", (req, res) => {
 
 app.get("/occupancyProbability", (req, res) => {
   const { room } = req.query;
-  console.log(room);
   database
     .occupancyProbability(room)
     .then((response) => {

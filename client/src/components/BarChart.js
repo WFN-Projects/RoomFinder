@@ -1,15 +1,24 @@
-import React, { useState, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import Chart from "chart.js/auto";
-//import { hourProbability } from "../server/database.js";
+// import { Bar } from "react-chartjs-2";
+
+Chart.register({
+  id: "myCustomScale",
+  type: "linear",
+  ticks: {
+    min: 0,
+    max: 100,
+    stepSize: 20,
+  },
+});
 
 const BarChart = ({ roomNumber }) => {
-  // Create a new Map object with some sample data
-  //const myMap = new Map();
-  // myMap.set("0", 10);
-  // myMap.set("1", 20);
-  //myMap.set("2", 15);
-  //console.log(hourProbability);
   const [map, setMap] = useState({});
+  const [labels, setLabels] = useState({});
+  const [data, setData] = useState({});
+
+  // Create a reference to the canvas element using the useRef hook
+  const canvasRef = useRef(null);
 
   const getMap = async () => {
     try {
@@ -19,7 +28,7 @@ const BarChart = ({ roomNumber }) => {
       if (response.ok) {
         const jsonData = await response.json();
         setMap(jsonData);
-        console.log(map);
+        return jsonData; // <-- Return an array of keys
       } else {
         console.log(`Server returned status code ${response.status}`);
       }
@@ -28,46 +37,62 @@ const BarChart = ({ roomNumber }) => {
     }
   };
 
-  // // Extract the keys and values from the map into separate arrays
-  // const labels = Array.from(hourProbability.keys());
-  // const data = Array.from(hourProbability.values());
+  // Use the useEffect hook to create the chart after the component mounts
+  useEffect(() => {
+    getMap().then((jsonData) => {
+      // console.log(jsonData, Object.keys(jsonData), Object.values(jsonData));
+      const keys = Object.keys(jsonData);
+      const values = Object.values(jsonData);
+      setLabels(keys);
+      setData(values);
+      console.log(keys, values);
 
-  // // Create a reference to the canvas element using the useRef hook
-  // const canvasRef = useRef(null);
+      const ctx = canvasRef.current.getContext("2d");
 
-  // // Use the useEffect hook to create the chart after the component mounts
-  // useEffect(() => {
-  //   // Create a new Chart object with the canvas context
-  //   const Chart = new Chart(canvasRef.current, {
-  //     type: "bar",
-  //     data: {
-  //       labels: labels, // Set the x-axis labels to the keys in the map
-  //       datasets: [
-  //         {
-  //           label: "My Dataset",
-  //           data: data, // Set the y-axis data to the values in the map
-  //           backgroundColor: "rgba(191, 85, 236, 0.5)",
-  //           borderColor: "rgba(191, 85, 236, 1)",
-  //           borderWidth: 2,
-  //         },
-  //       ],
-  //     },
-  //     options: {
-  //       scales: {
-  //         y: {
-  //           beginAtZero: true, // Start the y-axis at zero
-  //         },
-  //       },
-  //     },
-  //   });
+      const myChart = new Chart(ctx, {
+        type: "bar",
+        data: {
+          labels: keys, // <-- Use the returned array
+          datasets: [
+            {
+              label: "Occupancy Probability per Hour",
+              data: values,
+              backgroundColor: "grey",
+              borderColor: "black",
+              borderWidth: 0.5,
+            },
+          ],
+        },
+        options: {
+          scales: {
+            x: {
+              ticks: {
+                stepSize: 1, // <-- Set the step size of the x-axis ticks to 1
+              },
+            },
+            y: {
+              type: "linear",
+              ticks: {
+                min: 0,
+                max: 100,
+                stepSize: 20,
+              },
+            },
+          },
+        },
+      });
 
-  //   // Return a cleanup function to destroy the chart when the component unmounts
-  //   return () => {
-  //     Chart.destroy();
-  //   };
-  // }, [data, labels]);
+      return () => {
+        myChart.destroy();
+      };
+    });
+  }, [roomNumber]);
 
-  return <div>{/* <canvas ref={canvasRef}></canvas> */}</div>;
+  return (
+    <div>
+      <canvas ref={canvasRef} />
+    </div>
+  );
 };
 
 export default BarChart;
