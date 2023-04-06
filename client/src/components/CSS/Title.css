@@ -1,0 +1,18 @@
+.title {
+  text-align: center;
+  font-family: "Inter", sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 80px;
+  line-height: 97px;
+  text-align: center;
+
+  color: #000000;
+
+}
+.Grid-item {
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 5px;
+  font-family: 'Inter', sans-serif;
+}

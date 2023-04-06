@@ -1,24 +1,20 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import Title from "./components/Title";
+import { Routes, Route } from "react-router-dom";
+import Buildinglayout from "./components/BuildingLayout";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Routes>
+        <Route path="/" element={<Title />}></Route>
+        <Route
+          path="/buildinglayout/:name"
+          element={<Buildinglayout />}
+        ></Route>
+        {/* use useParams() to access the name of the building being passed to the building layout component */}
+      </Routes>
+    </>
   );
 }
 
