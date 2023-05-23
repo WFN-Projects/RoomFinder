@@ -1,1 +1,2 @@
-# Roomfgfgg
+Our projects team built a study-room availability tracker. Study rooms in first year residence buildings use motion-triggered lights – if motion is detected, the lights are turned on otherwise they are left off. Our team figured that if we can somehow track whether a light is on off, we can use that to determine study room availability.  We decided on an arduino controlled, photoresistor circuit which could make post requests dependant on light values. The avaiblites would then be reported on a full-stack web application. 
+
